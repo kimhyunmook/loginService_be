@@ -1,1 +1,8 @@
-GET
+POST http://localhost:8000/api/user/register
+Content-Type: application/json
+
+{
+    "email":"ggg@naver.com",
+    "password":"1234",
+    "name":"test"
+}

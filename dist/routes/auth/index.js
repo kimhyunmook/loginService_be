@@ -13,13 +13,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const client_1 = require("@prisma/client");
+const prisma = new client_1.PrismaClient();
 const router = express_1.default.Router();
-exports.default = router;
 router.post("/login", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { email } = req.body;
     try {
-        // res.setAuthCookie().status(200).send();
+        const user = yield prisma.user.findUnique({
+            where: {
+                email,
+            },
+        });
+        res.status(200).send(user);
     }
     catch (err) {
         console.error(err);
     }
 }));
+exports.default = router;

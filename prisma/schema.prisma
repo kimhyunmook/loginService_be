@@ -18,7 +18,8 @@ model User {
   email     String   @unique
   name      String
   password  String
-  profil    String   @default("/default_img.svg")
+  profil    String   @default("/img/default_img.svg")
+  role      Int      @default(1)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   avatar    Avatar[]
